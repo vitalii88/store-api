@@ -1,0 +1,37 @@
+{
+  "name": "store-api",
+  "version": "0.0.1",
+  "description": "This project was implemented in order to teach the Express framework and MongoDB.",
+  "main": "index.js",
+  "scripts": {
+    "release": "standard-version",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalii88/store-api.git"
+  },
+  "keywords": [
+    "JS",
+    "MongoDB",
+    "Express"
+  ],
+  "author": "Vitalii Bairak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalii88/store-api/issues"
+  },
+  "homepage": "https://github.com/vitalii88/store-api#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.1",
+    "standard-version": "^9.5.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

@@ -1,9 +1,11 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+import expressAsyncErrors from 'express-async-errors'
 import dbConnector from './db/dbConnector.js';
 import notFound from './middleware/notFound.js';
 import errorHandler from './middleware/errorHandler.js';
+import productRoutes from './routes/products.js'
 
 dotenv.config();
 const PORT = process.env.PORT || 5001;
@@ -18,6 +20,7 @@ app.get('/', (req, resp) => {
 });
 
 // Product routes
+app.use('/api/v1/products', productRoutes );
 
 
 app.use(notFound);

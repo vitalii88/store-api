@@ -6,3 +6,5 @@ install:
 	npm install
 init:
 	cp .env.template .env
+addTemplateData:
+	node populate.js

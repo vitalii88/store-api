@@ -6,3 +6,5 @@ install-backend:
 	make -C server install
 init-server:
 	make -C server init & make -C server install
+addTemplateData:
+	make -C server addTemplateData

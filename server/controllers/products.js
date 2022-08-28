@@ -1,12 +1,12 @@
 import Products from '../models/products.js';
 
 export const getAllProductsStatic = async (req, resp) => {
-  const products = await Products.find({}).sort('-name price');
+  const products = await Products.find({}).select('name price');
   resp.status(200).json({ products, nbHits: products.length });
 };
 
 export const getAllProducts = async (req, resp) => {
-  const { featured, company, name, sort } = req.query;
+  const { featured, company, name, sort, fields } = req.query;
   const queryObj = {};
 
   if (featured) {
@@ -21,12 +21,20 @@ export const getAllProducts = async (req, resp) => {
 
   console.log(queryObj)
   let result = Products.find(queryObj);
+  // SORT
   if (sort) {
     const sortList = sort.split(',').join(' ');
     result = result.sort(sortList);
   } else {
     result.sort('createdAt');
   }
+
+  // FIELDS
+  if (fields) {
+    const fieldsList = fields.split(',').join(' ');
+    result = result.select(fieldsList);
+  }
+
   const products = await result;
   resp.status(200).json({ products, nbHits: products.length });
 };

@@ -1,7 +1,7 @@
 import Products from '../models/products.js';
 
 export const getAllProductsStatic = async (req, resp) => {
-  const products = await Products.find({}).select('name price');
+  const products = await Products.find({}).select('name price').limit(3);
   resp.status(200).json({ products, nbHits: products.length });
 };
 
@@ -34,6 +34,12 @@ export const getAllProducts = async (req, resp) => {
     const fieldsList = fields.split(',').join(' ');
     result = result.select(fieldsList);
   }
+
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  result = result.skip(skip).limit(limit);
 
   const products = await result;
   resp.status(200).json({ products, nbHits: products.length });
